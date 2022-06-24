@@ -29,7 +29,6 @@ import argparse
 
 from classes.env.custom_hopper import *
 from stable_baselines3 import PPO
-from stable_baselines3.common.evaluation import evaluate_policy
 import numpy as np
 
 model = PPO.load("/content/model.mdl")
