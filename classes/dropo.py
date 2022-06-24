@@ -1,6 +1,5 @@
 import numpy as np
 import nevergrad as ng
-import cma
 from scipy.stats import truncnorm
 from scipy.stats import multivariate_normal
 
@@ -37,16 +36,15 @@ class Dropo(object):
             search_space.append(ng.p.Scalar(init=2).set_bounds(lower=0, upper=4))
 
         params = ng.p.Tuple(*search_space)
-        instru = ng.p.Instrumentation(x=params)
-        Optimizer = ng.optimizers.CMA
-        optim = Optimizer(parametrization=instru, budget=budget)
+        instrum = ng.p.Instrumentation(x=params)
+        optim = ng.optimizers.CMA(parametrization=instrum, budget=budget)
         res = optim.minimize(self.function)
         return self.denormalize(np.array(res.value[1]['x'][0:3]), np.array(res.value[1]['x'][3:])), self.function(
             **res.kwargs)
 
     def truncnormal(self, mu, cov, size):
         l = []
-        # because we keep the first mass fixes to 2.53429174
+        # because we keep the first mass fixed to 2.53429174
         l.append((2.53429174) * np.ones(size))
         for i, mean in enumerate(mu):
             std = cov[i]
@@ -71,7 +69,6 @@ class Dropo(object):
     def function(self, x):
         mu = np.array(x[0:3])
         cov = np.array(x[3:])
-        epsilon = 1e-3
         L = 0
         mu, cov = self.denormalize(mu, cov)
         csi = self.truncnormal(mu, cov, self.K * (self.instances_to_use))
