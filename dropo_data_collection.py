@@ -25,7 +25,6 @@ Original file is located at
 
 import torch
 import gym
-import argparse
 
 from classes.env.custom_hopper import *
 from stable_baselines3 import PPO
