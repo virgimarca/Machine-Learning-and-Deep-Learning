@@ -91,4 +91,3 @@ for episode in range(episodes):
   print(f"Episode: {episode} | Return: {test_reward}")
 
 avg = np.sum(test_rewards)/len(test_rewards)
-avg
