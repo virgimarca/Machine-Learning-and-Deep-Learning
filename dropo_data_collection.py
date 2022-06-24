@@ -7,6 +7,22 @@ Original file is located at
     https://colab.research.google.com/drive/1yFDleBYolDBCb1LNHxK87Rr4kLkH8xWB
 """
 
+!apt-get install -y \
+    libgl1-mesa-dev \
+    libgl1-mesa-glx \
+    libglew-dev \
+    libosmesa6-dev \
+    software-properties-common
+
+!apt-get install -y patchelf
+
+!pip install gym
+!pip install free-mujoco-py
+!pip install stable-baselines3
+
+#@title
+!unzip classes.zip
+
 import torch
 import gym
 import argparse
