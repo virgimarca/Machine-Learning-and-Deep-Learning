@@ -18,8 +18,6 @@ Original file is located at
 
 !pip install gym
 !pip install free-mujoco-py
-!pip install cma
-!pip install nevergrad
 !pip install stable_baselines3
 
 !unzip classes.zip
