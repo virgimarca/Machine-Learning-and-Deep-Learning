@@ -73,7 +73,7 @@ action_space_dim = env.action_space.shape[-1]
 policy = Policy(observation_space_dim, action_space_dim)
 policy.load_state_dict(torch.load(model), strict=True)
 
-agent = Agent(1e-4, 0.99, policy, device=device)
+agent = Agent(1e-4, 1, policy, device=device)
 
 test_rewards = []
 for episode in range(episodes):
