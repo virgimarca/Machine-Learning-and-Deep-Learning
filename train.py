@@ -142,7 +142,7 @@ observation_space_dim = env.observation_space.shape[-1]
 action_space_dim = env.action_space.shape[-1]
 alpha = 0.01**(1/99999)
 policy = Policy(observation_space_dim, action_space_dim)
-agent = Agent(1e-2, 1, policy, device=device)
+agent = Agent(1e-2, alpha, policy, device=device)
 total_rewards = []
 for episode in range(n_episodes):
   
